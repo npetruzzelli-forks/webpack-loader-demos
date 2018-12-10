@@ -1,6 +1,18 @@
 {
   "private": true,
   "scripts": {
+    "build-all": "npm-run-all --print-label --sequential fullstack-build postcss-build sass-build styles-build",
+    "fullstack-build": "cross-env NODE_ENV=production webpack --mode production --config ./tools/webpack/config/fullstack.webpack.config.js",
+    "fullstack-serve-dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --config ./tools/webpack/config/fullstack.webpack.config.js --open",
+    "lint": "eslint --format=pretty \"src/**/*.{js,jsx}\" \"tools/**/*.js\"",
+    "postcss-build": "cross-env NODE_ENV=production webpack --mode production --config ./tools/webpack/config/postcss.webpack.config.js",
+    "postcss-serve-dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --config ./tools/webpack/config/postcss.webpack.config.js --open",
+    "serve-src": "cross-env NODE_ENV=development browser-sync start --config './tools/browsersync/config/src.bs-config.js'",
+    "start": "npm-run-all --print-label --parallel serve-src fullstack-serve-dev",
+    "sass-build": "cross-env NODE_ENV=production webpack --mode production --config ./tools/webpack/config/sass.webpack.config.js",
+    "sass-serve-dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --config ./tools/webpack/config/sass.webpack.config.js --open",
+    "styles-build": "cross-env NODE_ENV=production webpack --mode production --config ./tools/webpack/config/css.webpack.config.js",
+    "styles-serve-dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --config ./tools/webpack/config/css.webpack.config.js --open"
   },
   "devReference": {
     "normal-sources": {
