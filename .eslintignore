@@ -1,0 +1,7 @@
+# https://eslint.org/docs/user-guide/configuring#ignoring-files-and-directories
+**/*.min.js
+**/.tmp/**/*
+**/bower_components/**/*
+**/dist/**/*
+**/node_modules/**/*
+**/vendor/**/*

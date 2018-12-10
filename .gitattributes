@@ -1,0 +1,176 @@
+# https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes
+# https://git-scm.com/docs/gitattributes
+# https://github.com/alexkaratarakis/gitattributes/blob/master/Web.gitattributes
+# https://github.com/h5bp/html5-boilerplate/blob/v6.1.0/.gitattributes
+
+## AUTO-DETECT
+##    Handle line endings automatically for files detected as text and leave all
+##    files detected as binary untouched. This will handle all files NOT defined
+##    below.
+* text=auto
+
+## NORMALIZE TEXT FILES
+##    For the following file types, normalize line endings to LF on checkin and
+##    prevent conversion to CRLF when they are checked out (this is required in
+##    order to prevent newline related issues like, for example, after the build
+##    script is run)
+
+## SOURCE CODE
+*.bat       text  eol=crlf
+*.css       text  eol=lf
+*.coffee    text  eol=lf
+*.es6       text  eol=lf
+*.htm       text  eol=lf
+*.html      text  eol=lf
+*.ini       text  eol=lf
+*.inc       text  eol=lf
+*.js        text  eol=lf
+*.json      text  eol=lf
+*.jsx       text  eol=lf
+*.less      text  eol=lf
+*.php       text  eol=lf
+*.py        text  eol=lf
+*.rb        text  eol=lf
+*.sass      text  eol=lf
+*.scss      text  eol=lf
+*.sh        text  eol=lf
+*.sql       text  eol=lf
+*.styl      text  eol=lf
+*.ts        text  eol=lf
+*.tsx       text  eol=lf
+*.xhtml     text  eol=lf
+*.xml       text  eol=lf
+*.yml       text  eol=lf
+
+## DOCUMENTATION
+*.markdown   text  eol=lf
+*.md         text  eol=lf
+*.mdwn       text  eol=lf
+*.mdown      text  eol=lf
+*.mkd        text  eol=lf
+*.mkdn       text  eol=lf
+*.mdtxt      text  eol=lf
+*.mdtext     text  eol=lf
+*.txt        text  eol=lf
+AUTHORS      text  eol=lf
+CHANGELOG    text  eol=lf
+CHANGES      text  eol=lf
+CONTRIBUTING text  eol=lf
+COPYING      text  eol=lf
+copyright    text  eol=lf
+*COPYRIGHT*  text  eol=lf
+INSTALL      text  eol=lf
+license      text  eol=lf
+LICENSE      text  eol=lf
+NEWS         text  eol=lf
+readme       text  eol=lf
+*README*     text  eol=lf
+TODO         text  eol=lf
+
+## TEMPLATES
+*.dot         text  eof=lf
+*.ejs         text  eof=lf
+*.haml        text  eof=lf
+*.handlebars  text  eof=lf
+*.hbs         text  eof=lf
+*.hbt         text  eof=lf
+*.jade        text  eof=lf
+*.latte       text  eof=lf
+*.mustache    text  eof=lf
+*.njk         text  eof=lf
+*.phtml       text  eof=lf
+*.tmpl        text  eof=lf
+*.tpl         text  eof=lf
+*.twig        text  eof=lf
+
+## LINTERS
+.csslintrc     text  eof=lf
+.eslintrc      text  eof=lf
+.htmlhintrc    text  eof=lf
+.jscsrc        text  eof=lf
+.jshintrc      text  eof=lf
+.jshintignore  text  eof=lf
+.stylelintrc   text  eof=lf
+
+## CONFIGS
+*.bowerrc        text  eof=lf
+*.cnf            text  eof=lf
+*.conf           text  eof=lf
+*.config         text  eof=lf
+.browserslistrc  text  eof=lf
+.editorconfig    text  eof=lf
+.gitattributes   text  eof=lf
+.gitconfig       text  eof=lf
+.htaccess        text  eof=lf
+*.npmignore      text  eof=lf
+*.yaml           text  eof=lf
+*.yml            text  eof=lf
+browserslist     text  eof=lf
+Makefile         text  eof=lf
+makefile         text  eof=lf
+
+## GRAPHICS
+*.ai    binary
+*.bmp   binary
+*.eps   binary
+*.gif   binary
+*.ico   binary
+*.jng   binary
+*.jp2   binary
+*.jpg   binary
+*.jpeg  binary
+*.jpx   binary
+*.jxr   binary
+*.pdf   binary
+*.png   binary
+*.psb   binary
+*.psd   binary
+*.svg   text    eol=lf
+*.svgz  binary
+*.tif   binary
+*.tiff  binary
+*.wbmp  binary
+*.webp  binary
+
+## AUDIO
+*.kar   binary
+*.m4a   binary
+*.mid   binary
+*.midi  binary
+*.mp3   binary
+*.ogg   binary
+*.ra    binary
+
+## VIDEO
+*.3gpp  binary
+*.3gp   binary
+*.as    binary
+*.asf   binary
+*.asx   binary
+*.fla   binary
+*.flv   binary
+*.m4v   binary
+*.mng   binary
+*.mov   binary
+*.mp4   binary
+*.mpeg  binary
+*.mpg   binary
+*.ogv   binary
+*.swc   binary
+*.swf   binary
+*.webm  binary
+
+## ARCHIVES
+*.7z   binary
+*.gz   binary
+*.jar  binary
+*.rar  binary
+*.tar  binary
+*.zip  binary
+
+## FONTS
+*.ttf    binary
+*.eot    binary
+*.otf    binary
+*.woff   binary
+*.woff2  binary
