@@ -1,0 +1,24 @@
+{
+  "sourcesProxyServer": {
+    "http": {
+      "port": 9000
+    },
+    "ui": {
+      "port": 9001
+    }
+  },
+  "webServer": {
+    "hostname": "localhost",
+    "pathname": "/",
+    "port": {
+      "css": 9002,
+      "cssFixed": 9003,
+      "postcss": 9004,
+      "postcssFixed": 9005,
+      "sass": 9006,
+      "sassFixed": 9007,
+      "fullStyleStack": 9008,
+      "fullStyleStackFixed": 9009
+    }
+  }
+}
