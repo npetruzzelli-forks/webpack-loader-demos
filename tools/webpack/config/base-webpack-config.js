@@ -179,7 +179,6 @@ function makeBaseWebpackConfig(cliEnvironment, argv, vars) {
       historyApiFallback: true,
       proxy: {
         '/src': {
-          pathRewrite: { '^/src': '' },
           target: `http://localhost:${DEV_SOURCE_PORT}`
         }
       }

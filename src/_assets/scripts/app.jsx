@@ -15,6 +15,11 @@ class App extends Component {
         <ul>
           <li>
             <a href="/src">/src</a> - source code
+            <ul>
+              <li>
+                <a href="/src/node_modules">/node_modules</a>
+              </li>
+            </ul>
           </li>
           <li>
             <a href="/webpack-dev-server">/webpack-dev-server</a> - bundled code
