@@ -6,6 +6,7 @@ const VARS = {
   DEV_SERVER_PATHNAME: commonConfig.webServer.pathname || '/',
   DEV_SERVER_PORT: 8080,
   DEV_SOURCE_PORT: commonConfig.sourcesProxyServer.http.port || 3000,
+  ENTRY_NAME: 'main',
   PATH_TO_DIST: path.resolve(__dirname, '../../../.tmp/dist/'),
   PATH_TO_PUBLIC: path.resolve(__dirname, '../../../static/'),
   PATH_TO_REPO_ROOT: path.resolve(__dirname, '../../../'),

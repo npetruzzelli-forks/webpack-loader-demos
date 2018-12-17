@@ -17,10 +17,13 @@ function makeWebpackConfig(cliEnvironment, argv) {
     DEV_SERVER_PORT: commonConfig.webServer.port.sass,
     PATH_TO_DIST: path.resolve(__dirname, '../../../.tmp/dist/sass-stack/')
   })
-  const { PATH_TO_SOURCE } = vars
+  const { ENTRY_NAME, PATH_TO_SOURCE } = vars
   const webpackConfig = baseWebpackConfig(cliEnvironment, argv, vars)
 
-  webpackConfig.entry.main = path.resolve(PATH_TO_SOURCE, 'index.sass.jsx')
+  webpackConfig.entry[ENTRY_NAME] = path.resolve(
+    PATH_TO_SOURCE,
+    'index.sass.jsx'
+  )
   webpackConfig.module.rules.push(
     // STYLESHEETS: SASS
     {

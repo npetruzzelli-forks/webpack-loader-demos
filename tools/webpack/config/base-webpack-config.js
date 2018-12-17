@@ -39,6 +39,7 @@ function makeBaseWebpackConfig(cliEnvironment, argv, vars) {
     DEV_SERVER_PORT,
     DEV_SOURCE_PORT,
     DEVELOPMENT,
+    ENTRY_NAME,
     IS_DEVELOPMENT_ENV,
     IS_PRODUCTION_ENV,
     IS_TEST_ENV,
@@ -49,6 +50,37 @@ function makeBaseWebpackConfig(cliEnvironment, argv, vars) {
     PRODUCTION,
     WP_ENV
   } = vars
+
+  /**
+   * The `[name]` replacement convention can mean different things depending to
+   * Webpack's core code and to different plugins and loaders. Generally it
+   * falls into one of two categories:
+   *
+   * -   The entry point's name. When a name isn't explicitly defined, the
+   *     default name is `main`.
+   *     -   Webpack Configuration Options
+   *     -   Webpack Loader Utilities
+   *     -   Mini CSS Extract Plugin
+   * -   The resource file's basename (the file name without the file extension)
+   *     -   file-loader
+   *
+   * Depending on the project's conventions, the entry point name may or may not
+   * be intended to also be the built bundle's name.
+   *
+   * To avoid ambiguity, we won't use `[name]` in replacements. Instead we will
+   * create a constant in our config file. This will work fine for simple
+   * Webpack configurations, but more complex ones with multiple end points may
+   * quickly become more difficult to maintain.
+   *
+   * Ideally, Webpack core code, loader utilities, etc. and third party code
+   * (plugins and loaders) would adopt a convention that would allow explicitly
+   * identifying your intent, perhaps something like `[entryname]` and
+   * `[resourcename]`, while leaving `[name]` untouched for backwards
+   * compatibility.
+   *
+   * Adjust as needed.
+   */
+  const BUNDLE_NAME = ENTRY_NAME
 
   /**
    * Set mode based on the `NODE_ENV` environment variable, but give priority
@@ -62,8 +94,8 @@ function makeBaseWebpackConfig(cliEnvironment, argv, vars) {
       : 'none'
 
   const miniStylesExtract = new MiniCssExtractPlugin({
-    filename: '_assets/bundles/[name]/[name].bundle.[hash:20].css',
-    chunkFilename: '_assets/bundles/[name]/[id].css'
+    filename: `_assets/bundles/${BUNDLE_NAME}/${BUNDLE_NAME}.bundle.[hash:20].css`,
+    chunkFilename: `_assets/bundles/${BUNDLE_NAME}/[id].css`
   })
 
   var webpackConfig = {
@@ -88,7 +120,7 @@ function makeBaseWebpackConfig(cliEnvironment, argv, vars) {
           test: /\.(ani|cur|gif|ico|jpeg|jpg|png|webp)$/,
           loader: 'file-loader',
           options: {
-            name: '_assets/bundles/common/images/[name].[hash:20].[ext]'
+            name: `_assets/bundles/${BUNDLE_NAME}/images/[name].[hash:20].[ext]`
           }
         },
 
@@ -97,7 +129,7 @@ function makeBaseWebpackConfig(cliEnvironment, argv, vars) {
           test: /\.(eot|otf|ttf|woff|woff2)$/,
           loader: 'file-loader',
           options: {
-            name: '_assets/bundles/common/fonts/[name].[hash:20].[ext]'
+            name: `_assets/bundles/${BUNDLE_NAME}/fonts/[name].[hash:20].[ext]`
           }
         },
 
@@ -118,7 +150,7 @@ function makeBaseWebpackConfig(cliEnvironment, argv, vars) {
               isImage = false
               isFont = false
 
-              name = '_assets/bundles/common/'
+              name = `_assets/bundles/${BUNDLE_NAME}/`
               if (isImage) {
                 name += 'images/'
               } else if (isFont) {
@@ -138,7 +170,7 @@ function makeBaseWebpackConfig(cliEnvironment, argv, vars) {
     output: {
       path: PATH_TO_DIST,
       publicPath: '/',
-      filename: '_assets/bundles/[name]/[name].[hash:20].js'
+      filename: `_assets/bundles/${BUNDLE_NAME}/${BUNDLE_NAME}.[hash:20].js`
     },
     devServer: {
       contentBase: PATH_TO_PUBLIC,

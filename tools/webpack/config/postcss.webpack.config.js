@@ -18,6 +18,7 @@ function makeWebpackConfig(cliEnvironment, argv) {
     PATH_TO_DIST: path.resolve(__dirname, '../../../.tmp/dist/postcss-stack/')
   })
   const {
+    ENTRY_NAME,
     IS_PRODUCTION_ENV,
     PATH_TO_SOURCE,
     POSTCSS_CONFIG_PATH,
@@ -25,7 +26,10 @@ function makeWebpackConfig(cliEnvironment, argv) {
   } = vars
   const webpackConfig = baseWebpackConfig(cliEnvironment, argv, vars)
 
-  webpackConfig.entry.main = path.resolve(PATH_TO_SOURCE, 'index.css.jsx')
+  webpackConfig.entry[ENTRY_NAME] = path.resolve(
+    PATH_TO_SOURCE,
+    'index.css.jsx'
+  )
   webpackConfig.module.rules.push(
     // STYLESHEETS: CSS
     {

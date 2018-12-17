@@ -21,6 +21,7 @@ function makeWebpackConfig(cliEnvironment, argv) {
     )
   })
   const {
+    ENTRY_NAME,
     IS_PRODUCTION_ENV,
     PATH_TO_SOURCE,
     POSTCSS_CONFIG_PATH,
@@ -28,7 +29,10 @@ function makeWebpackConfig(cliEnvironment, argv) {
   } = vars
   const webpackConfig = baseWebpackConfig(cliEnvironment, argv, vars)
 
-  webpackConfig.entry.main = path.resolve(PATH_TO_SOURCE, 'index.sass.jsx')
+  webpackConfig.entry[ENTRY_NAME] = path.resolve(
+    PATH_TO_SOURCE,
+    'index.sass.jsx'
+  )
   // Uncomment the following if for some reason you needed to use both Sass and
   // CSS
   // webpackConfig.module.rules.push(
