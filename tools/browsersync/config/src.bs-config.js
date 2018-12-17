@@ -1,5 +1,13 @@
 const path = require('path')
 const commonConfig = require('../../common-config.json')
+const serveIndexForRoute = require('../utils/serve-index-for-route')
+
+/**
+ * FAUX_SOURCE_PATH is a path to an empty or non-existent directory. We are only
+ * interested in serving specific directories at specific routes.
+ * `server.baseDir` should not serve unnecessary content.
+ */
+const FAUX_SOURCE_PATH = path.resolve(__dirname, '../../../.tmp/faux-src')
 const SOURCE_PATH = path.resolve(__dirname, '../../../src')
 
 /*
@@ -15,7 +23,7 @@ const SOURCE_PATH = path.resolve(__dirname, '../../../src')
  |
  |
  */
-module.exports = {
+const bsConfig = {
   ui: {
     port: commonConfig.sourcesProxyServer.ui.port
   },
@@ -26,8 +34,11 @@ module.exports = {
   // single: false,
   // watchOptions: { ignoreInitial: true },
   server: {
-    baseDir: SOURCE_PATH,
-    directory: true
+    baseDir: FAUX_SOURCE_PATH,
+    directory: false,
+    routes: {
+      '/src': SOURCE_PATH
+    }
   },
   proxy: false,
   port: commonConfig.sourcesProxyServer.http.port,
@@ -111,3 +122,25 @@ module.exports = {
   // },
   // injectNotification: false // Undocumented?
 }
+
+if (!Array.isArray(bsConfig.middleware)) {
+  if (bsConfig.middleware == null) {
+    bsConfig.middleware = []
+  } else {
+    bsConfig.middleware = [bsConfig.middleware]
+  }
+}
+
+if (
+  typeof bsConfig.server === 'object' &&
+  typeof bsConfig.server.routes === 'object'
+) {
+  const routes = bsConfig.server.routes
+  for (const routeUrl in routes) {
+    let routeFsPath = routes[routeUrl]
+
+    bsConfig.middleware.push(serveIndexForRoute(routeUrl, routeFsPath))
+  }
+}
+
+module.exports = bsConfig
