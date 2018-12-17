@@ -8,6 +8,7 @@ const serveIndexForRoute = require('../utils/serve-index-for-route')
  * `server.baseDir` should not serve unnecessary content.
  */
 const FAUX_SOURCE_PATH = path.resolve(__dirname, '../../../.tmp/faux-src')
+const NODE_MODULES_PATH = path.resolve(__dirname, '../../../node_modules')
 const SOURCE_PATH = path.resolve(__dirname, '../../../src')
 
 /*
@@ -37,6 +38,7 @@ const bsConfig = {
     baseDir: FAUX_SOURCE_PATH,
     directory: false,
     routes: {
+      '/src/node_modules': NODE_MODULES_PATH,
       '/src': SOURCE_PATH
     }
   },
